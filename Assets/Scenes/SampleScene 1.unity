@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 157652251}
   - component: {fileID: 157652250}
   m_Layer: 0
-  m_Name: SnakeHead (1)
+  m_Name: Snake2
   m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   snakeBodyTransformList: []
   state: 0
   snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
+  OtherSnake: {fileID: 800491695}
 --- !u!212 &157652251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -926,6 +927,7 @@ MonoBehaviour:
   snakeBodyTransformList: []
   state: 0
   snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
+  OtherSnake: {fileID: 0}
 --- !u!212 &736038023
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1291,6 +1293,7 @@ MonoBehaviour:
   snakeBodyTransformList: []
   state: 0
   snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
+  OtherSnake: {fileID: 157652249}
 --- !u!1 &879318672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1529,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997674690}
   m_CullTransparentMesh: 1
+--- !u!1 &1133978335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1133978336}
+  - component: {fileID: 1133978337}
+  m_Layer: 0
+  m_Name: Food gen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1133978336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133978335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.88862, y: 4.99, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1133978337
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133978335}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6990e42a5f0fc4948bb973f92646e7a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1242143235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,7 +1737,7 @@ MonoBehaviour:
   SnakeHeadSprite: {fileID: 21300000, guid: 5eaaa220d58747a4cb8ce30500e3707d, type: 3}
   FoodSprite: {fileID: 8266573825094159349, guid: 88d9d4faf33768742b9cac13ed648343, type: 3}
   snakeBodySprite: {fileID: 7482667652216324306, guid: da524330475c1754cad71672b4c38940, type: 3}
-  FoodSprite2: {fileID: -6812815033068719263, guid: 66f131b05968771449400473de325012, type: 3}
+  FoodSprite2: {fileID: 9021291026062527422, guid: 5de49061b38b36a44ae4818c362b1080, type: 3}
 --- !u!4 &1374872529
 Transform:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir for Foodref
+public class Foodgen /*: MonoBehaviour*/ 
 {
     private Vector2 FoodPos;
 
@@ -13,14 +13,11 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
     public Grid gridref;
 
 
-    // Position On Grid.......
-    private float gridheight=18;
-    private float gridWidth=10;
-    private float gridSize=1f;
-    public string name = "";
+ 
+    public string name_Food = "";
     public float timeToDestroy = 2;
     public float destroy = 0;
-
+    Color color ;
     private void Update()
     {
             
@@ -31,17 +28,16 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
         width = _width;
         height = _height;
         gridref = _gridref;
-        name = _name;
+        name_Food = _name;
 
-
+        color = new Color(244 / 255f, 196 / 255f, 48 / 255f);
 
     }
 
     public void RefToOtherGrid(Grid _gridref)
     {
         gridref = _gridref;
-        // check for null
-       // Debug.Log("GridPosFood()>>" + GridPosFood());
+    
     }
     public void RefToOther(Snake _snakeref)
     {
@@ -52,30 +48,34 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
     {
         do
         {
-            FoodPos = GridPosFood(); // How to spawn Them Exactly  insid ea Grid Box?
-        } while (snakeref.ReturningListOfAllSnakeBodyParts().IndexOf(FoodPos)!= -1);   // what is use of that whioole code index of 
+            FoodPos = GridPosFood(); 
+        } while (snakeref.ReturningListOfAllSnakeBodyParts().IndexOf(FoodPos)!= -1);  
 
-        // FoodPos = new Vector2(5, -25);
-       // Debug.Log("FoodPos" + FoodPos); 
+     
 
-        foodGameObj1 = new GameObject(name, typeof(SpriteRenderer));  // what si beenfit of Creating gameoBejct like that ?
+        foodGameObj1 = new GameObject(name_Food, typeof(SpriteRenderer));  
 
-        if (name == "BadFood")
+        if (name_Food == "BadFood")
         {
             if (snakeref.gameObject.tag=="Player2")
             {
                 foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite2;
                 foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer2";
+                foodGameObj1.GetComponent<SpriteRenderer>().material.color = Color.black;
+
             }
             else if(snakeref.gameObject.tag == "Player1")
             {
                 foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite2;
                 foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer1";
+              
+
+
             }
 
             // Set differtn color  ...
         }
-        else if (name == "GoodFood")
+        else if (name_Food == "GoodFood")
         {
 
             if (snakeref.gameObject.tag == "Player2")
@@ -83,6 +83,7 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
 
                 foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite;
                 foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer2";
+                foodGameObj1.GetComponent<SpriteRenderer>().material.color = Color.black; ;
 
             }
             else
@@ -105,9 +106,9 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
     public bool  TrySnakeEatFood(Vector2 snakeGridPos)
     {
 
-        if (snakeGridPos == FoodPos)
+        if (snakeGridPos ==FoodPos)
         {
-           
+            Debug.Log("true Get called called for >>" + this.foodGameObj1.name + ">>" + snakeref.gameObject.name);
                 Object.Destroy(foodGameObj1);
                 FoodSpawn();
                 return true;
@@ -115,6 +116,7 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
         }
         else
         {
+            Debug.Log("False  Get called called for >>" + this.foodGameObj1.name + ">>" + snakeref.gameObject.name);
             return false;
         }
     }

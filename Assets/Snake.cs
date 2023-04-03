@@ -18,7 +18,7 @@ public class Snake : MonoBehaviour
     private float gridMoveTimer;
     private float gridfMoveTimerMax = 1f; // contain the amount of time between moves
 
-    // differnce of initializibng the variable in the class or inside the Awake or Start
+   
 
     public Foodgen foodref1;
     public Foodgen foodref2;
@@ -31,7 +31,8 @@ public class Snake : MonoBehaviour
 
     public GameObject snakeBodyObject;
 
-   // public GameObject OtherSnake;
+
+    public GameObject OtherSnake;
     // Food Obejct passing.......
     public void RefToOther1(Foodgen _Foodref1)
     {
@@ -78,7 +79,9 @@ public class Snake : MonoBehaviour
             HandlegridMovemet();
         }
 
-       // CheckCollison();
+
+
+        Debug.Log("returned Grid Postion List>>" + ReturningListOfAllSnakeBodyParts());
 
 
     }
@@ -92,10 +95,7 @@ public class Snake : MonoBehaviour
         
             snakeMovementPositionList.Insert(0, gridPosition);
 
-            if (snakeMovementPositionList.Count >= snakeBodySize + 1)
-            {
-                //snakeMovementPositionList.RemoveAt(snakeMovementPositionList.Count - 1); // hwy only RemoveShowing Errro
-            }
+        
             gridPosition += gridMoveDirection; 
 
         }
@@ -107,7 +107,7 @@ public class Snake : MonoBehaviour
         //{
 
             bool snakeAteFood1 = foodref1.TrySnakeEatFood(gridPosition);
-        bool snakeAteFood2 = foodref2.TrySnakeEatFood(this.transform.position);
+        bool snakeAteFood2 = foodref2.TrySnakeEatFood(gridPosition);
        
             if (snakeAteFood1)
             {
@@ -146,7 +146,7 @@ public class Snake : MonoBehaviour
 
             }
         //}
-   
+
 
 
         for (int i = 0; i < snakeBodyTransformList.Count; i++)
@@ -289,10 +289,23 @@ public class Snake : MonoBehaviour
     }
 
 
+    //public void MatchPositionsWith()
+    //{
+    //    Debug.Log("Above Misatm,atcjh checking ");
+    //    for (int i = 0; i /*< snakeBodyTransformList.Count && i*/ < 10; i++)
+    //    {
+    //        Debug.Log("Isnide Misatm,atcjh checking " );
+    //        if (snakeBodyTransformList[i].position == OtherSnake.GetComponent<Snake>().snakeBodyTransformList[i].position)
+    //        {
+    //            Debug.Log("Position mismatch at index " + i);
+    //            state = SnakeState.Loose;
+    //        }
+    //    }
+    //}
 
 
-   
-       
 
-   
+
+
+
 }
