@@ -6,11 +6,12 @@ public class Gamemanager : MonoBehaviour
 {
     
     [SerializeField] 
-    private Snake snakref;
+    private Snake snakref1;
     [SerializeField]
-    private  Foodgen foodGenObj1;
-    [SerializeField]
-    private Foodgen foodGenObj2;
+    private Snake snakref2;
+    public Foodgen foodGenObj1;
+   
+    public Foodgen foodGenObj2;
     public Grid gridref;
     public GameObject snakeBodySprite;
 
@@ -23,13 +24,39 @@ public class Gamemanager : MonoBehaviour
 
         foodGenObj2 = new Foodgen(20, 20, gridref, "BadFood");
 
-        snakref.RefToOther1(foodGenObj1);
-        foodGenObj1.RefToOther(snakref);
-       foodGenObj1.RefToOtherGrid(gridref);
+        
+       
+        foodGenObj1.RefToOtherGrid(gridref);
+      
+        //....................
+      
+       
+     
 
-        // For Bad Food..........
-        snakref.RefToOther2(foodGenObj2);
-        foodGenObj2.RefToOther(snakref);
+        // FSnake reference .......
+        //For Snake 1..
+        snakref2.RefToOther2(foodGenObj2);
+        snakref2.RefToOther1(foodGenObj1);
+
+        // For Snake 2....
+        snakref1.RefToOther1(foodGenObj1);
+        snakref1.RefToOther2(foodGenObj2);
+
+        // FSnake reference .......
+
+
+        //...Food Object refrence .......
+        // Food Ovbejct 1
+        foodGenObj2.RefToOther(snakref1);
+       
+        foodGenObj2.RefToOther(snakref2);
+
+        // Food Ovbejct 2.....
+        foodGenObj1.RefToOther(snakref2);
+        foodGenObj1.RefToOther(snakref1);
+      
+     
+        foodGenObj1.RefToOtherGrid(gridref);
         foodGenObj2.RefToOtherGrid(gridref);
     }
 
@@ -38,9 +65,9 @@ public class Gamemanager : MonoBehaviour
     {
 
 
-        Destroy(foodGenObj1.foodGameObj1, 30);   //  if we are destroy foodGameObj1  then becuasde it's a refernce only then how the obejct from memeory will
-        Destroy(foodGenObj2.foodGameObj1, 30);                                           // get deleted ? 
-                                                                                         // Answer: grabage colector will automatyiclly detsroy it if referbnce count=0;
+        Destroy(foodGenObj1.foodGameObj1, 30);   
+        Destroy(foodGenObj2.foodGameObj1, 30);                                          
+                                                                                         
 
     }
 }

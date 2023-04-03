@@ -41,7 +41,7 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
     {
         gridref = _gridref;
         // check for null
-        Debug.Log("GridPosFood()>>" + GridPosFood());
+       // Debug.Log("GridPosFood()>>" + GridPosFood());
     }
     public void RefToOther(Snake _snakeref)
     {
@@ -62,12 +62,37 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
 
         if (name == "BadFood")
         {
-            foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite2.GetComponent<SpriteRenderer>().sprite;
+            if (snakeref.gameObject.tag=="Player2")
+            {
+                foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite2;
+                foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer2";
+            }
+            else if(snakeref.gameObject.tag == "Player1")
+            {
+                foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite2;
+                foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer1";
+            }
+
             // Set differtn color  ...
         }
         else if (name == "GoodFood")
         {
-            foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite;
+
+            if (snakeref.gameObject.tag == "Player2")
+            {
+
+                foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite;
+                foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer2";
+
+            }
+            else
+            if (snakeref.gameObject.tag == "Player1")
+            {
+
+                foodGameObj1.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.FoodSprite;
+                foodGameObj1.GetComponent<SpriteRenderer>().tag = "ForPlayer1";
+
+            }
         }
 
         foodGameObj1.transform.position = FoodPos;
@@ -94,21 +119,6 @@ public class Foodgen   // adding monobehvaiour showinf Emplty slot in isnpectoir
         }
     }
 
-    //public bool  TrySnakeEatFood(Vector2 snakeGridPos)
-    //{
-
-    //    if (snakeGridPos == FoodPos)
-    //    {
-    //        Destroy(foodGameObj1);
-    //       FoodSpawn();
-    //        Debug.Log("Food destoered");
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
 
 
     public Vector2 GridPosFood()
