@@ -8,7 +8,7 @@ public class SpriteRefer : MonoBehaviour
     public Sprite SnakeHeadSprite;
     public Sprite FoodSprite;
     public Sprite snakeBodySprite;
-    public GameObject FoodSprite2;
+    public Sprite FoodSprite2;
     private void Awake()
     {
         if (instance == null)

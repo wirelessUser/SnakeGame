@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Player2
   - Player1
+  - ForBad
+  - ForPlayer2
+  - ForPlayer1
   layers:
   - Default
   - TransparentFX
