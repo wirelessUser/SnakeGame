@@ -18,7 +18,7 @@ public class Snake : MonoBehaviour
     private float gridMoveTimer;
     private float gridfMoveTimerMax = 1f; // contain the amount of time between moves
 
-   
+
 
     public Foodgen foodref1;
     public Foodgen foodref2;
@@ -33,6 +33,8 @@ public class Snake : MonoBehaviour
 
 
     public GameObject OtherSnake;
+
+    int bodyCount=0;
     // Food Obejct passing.......
     public void RefToOther1(Foodgen _Foodref1)
     {
@@ -45,7 +47,10 @@ public class Snake : MonoBehaviour
         Debug.Log("RefToOther2>>Called for The snake >>" + name);
     }
 
-
+    private void Awake()
+    {
+        Debug.Log("Awake called from ==" + this.gameObject.name);
+    }
 
     private void Start()
     {
@@ -73,13 +78,17 @@ public class Snake : MonoBehaviour
 
     private void Update()
     {
-        if (state == SnakeState.Alive || state == SnakeState.Win || state == SnakeState.Loose)
+        if (state == SnakeState.Alive )
         {
             TakingInput();
             HandlegridMovemet();
         }
+        else
+        {
+            UiManager.instance.loosePanel.SetActive(true);
+        }
 
-
+        MatchPositionsWith();
 
         Debug.Log("returned Grid Postion List>>" + ReturningListOfAllSnakeBodyParts());
 
@@ -91,61 +100,62 @@ public class Snake : MonoBehaviour
         gridMoveTimer += Time.deltaTime;
         if (gridMoveTimer >= gridfMoveTimerMax)
         {
-            gridMoveTimer -= gridfMoveTimerMax;  
-        
             snakeMovementPositionList.Insert(0, gridPosition);
+            gridMoveTimer -= gridfMoveTimerMax;
 
-        
-            gridPosition += gridMoveDirection; 
+          
+
+
+            gridPosition += gridMoveDirection;
 
         }
 
 
 
         this.transform.position = new Vector3(gridPosition.x, gridPosition.y);
-        //if (foodref1 != null && foodref2 != null)
-        //{
+        if (foodref1 != null && foodref2 != null)
+        {
 
             bool snakeAteFood1 = foodref1.TrySnakeEatFood(gridPosition);
         bool snakeAteFood2 = foodref2.TrySnakeEatFood(gridPosition);
-       
-            if (snakeAteFood1)
+
+        if (snakeAteFood1)
+        {
+
+            Debug.Log("Snake Ate *GoodFood* grow Body");
+            snakeBodySize++;
+            Debug.Log("Size from Foodref_1snakeBodySize>>" + snakeBodySize);
+             CreatingSnakeBody();
+            UiManager.instance.score += 1;
+            if (UiManager.instance.score == 2)
             {
-
-                Debug.Log("Snake Ate *GoodFood* grow Body");
-                snakeBodySize++;
-                Debug.Log("Size from Foodref_1snakeBodySize>>" + snakeBodySize);
-                CreatingSnakeBody();
-                UiManager.instance.score += 1;
-                if (UiManager.instance.score == 2)
-                {
-                    state = SnakeState.Win;
-                    UiManager.instance.WinPanel.gameObject.SetActive(true);
-                }
-
-
+                state = SnakeState.Win;
+                UiManager.instance.WinPanel.gameObject.SetActive(true);
             }
 
-            else if (snakeAteFood2)
+
+        }
+
+        else if (snakeAteFood2)
+        {
+
+
+            Debug.Log("Snake Ate *BadFood* grow Body");
+
+            snakeBodySize--;
+            Debug.Log("Size from Bad Food>>" + snakeBodySize);
+            UiManager.instance.score -= 1;
+            if (UiManager.instance.score < 0)
             {
-
-
-                Debug.Log("Snake Ate *BadFood* grow Body");
-
-                snakeBodySize--;
-                Debug.Log("Size from Bad Food>>" + snakeBodySize);
-                UiManager.instance.score -= 1;
-                if (UiManager.instance.score < 0)
-                {
-                    state = SnakeState.Loose;
-                    UiManager.instance.loosePanel.gameObject.SetActive(true);
-                    UiManager.instance.score = 0;
-                }
-                RemovingSnakeBody();
-
-
+                state = SnakeState.Loose;
+                UiManager.instance.loosePanel.gameObject.SetActive(true);
+                UiManager.instance.score = 0;
             }
-        //}
+            RemovingSnakeBody();
+
+
+        }
+        }
 
 
 
@@ -155,13 +165,13 @@ public class Snake : MonoBehaviour
             snakeBodyTransformList[i].position = snakeBodyPosition;
 
         }
-
+       
 
         foreach (Transform snakeBodypartsTransfrom in snakeBodyTransformList)
         {
             Vector2 snakeBodyPartsgridPosition = snakeBodypartsTransfrom.position;
-
-            if (gridPosition==snakeBodyPartsgridPosition)
+          //  Debug.Log("snakeBodyPartsgridPosition>>" + snakeBodyPartsgridPosition);
+            if (gridPosition == snakeBodyPartsgridPosition)
             {
                 Debug.Log("gameOver");
                 state = SnakeState.Dead;
@@ -171,9 +181,9 @@ public class Snake : MonoBehaviour
 
     private void RemovingSnakeBody()
     {
-       
+
         int lastIndex = snakeBodyTransformList.Count - 1;
-        if (snakeBodySize != 0 || lastIndex!=0)
+        if (snakeBodySize != 0 || lastIndex != 0)
         {
             Transform lastBodyPart = snakeBodyTransformList[lastIndex];
             snakeBodyTransformList.RemoveAt(lastIndex);
@@ -182,27 +192,41 @@ public class Snake : MonoBehaviour
         else
         {
             snakeBodySize = 0;
-            Debug.Log("Else Situation Size is set to zero>> " );
+          //  Debug.Log("Else Situation Size is set to zero>> ");
         }
-        
-    }
 
+    }
 
 
     private void CreatingSnakeBody()
     {
-         snakeBodyObject = new GameObject("SnakeBody", typeof(SpriteRenderer));
+        bodyCount++;
+        snakeBodyObject = new GameObject("SnakeBody" + bodyCount, typeof(SpriteRenderer));
         snakeBodyObject.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.snakeBodySprite;
-        snakeBodyTransformList.Add(snakeBodyObject.transform); // why wrote that fucntion?
-        snakeBodyObject.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
-        snakeBodyObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        snakeBodyObject.GetComponent<SpriteRenderer>().sortingOrder = -snakeBodyTransformList.Count; // added sorting ordrr tothe body parts
+        snakeBodyObject.transform.position = snakeMovementPositionList[1];
+        snakeBodyTransformList.Add(snakeBodyObject.transform);
 
-        for (int i = 0; i < snakeBodyTransformList.Count; i++)
-        {
-           Debug.Log("snakeBodyTransformList[i]>> "+snakeBodyTransformList[i]);
-        }
+
+       
     }
+
+    #region
+    //private void CreatingSnakeBody()
+    //{
+    //    snakeBodyObject = new GameObject("SnakeBody", typeof(SpriteRenderer));
+    //    snakeBodyObject.GetComponent<SpriteRenderer>().sprite = SpriteRefer.instance.snakeBodySprite;
+    //    snakeBodyTransformList.Add(snakeBodyObject.transform); // why wrote that fucntion?
+    //    snakeBodyObject.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+    //    snakeBodyObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+    //    snakeBodyObject.GetComponent<SpriteRenderer>().sortingOrder = -snakeBodyTransformList.Count; // added sorting ordrr tothe body parts
+
+    //    for (int i = 0; i < snakeBodyTransformList.Count; i++)
+    //    {
+    //        Debug.Log("snakeBodyTransformList[i]>> " + snakeBodyTransformList[i]);
+    //    }
+    //}
+
+    #endregion
     public void TakingInput()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && gameObject.CompareTag("Player1") ||(Input.GetKeyDown(KeyCode.W) && gameObject.CompareTag("Player2")) )
@@ -283,25 +307,35 @@ public class Snake : MonoBehaviour
 
     public List<Vector2> ReturningListOfAllSnakeBodyParts()
     {
-        List<Vector2> gridPositionList = new List<Vector2>() { gridPosition };
+        List<Vector2> gridPositionList = new List<Vector2>() {  };
         gridPositionList.AddRange(snakeMovementPositionList);
         return gridPositionList;
     }
 
 
-    //public void MatchPositionsWith()
-    //{
-    //    Debug.Log("Above Misatm,atcjh checking ");
-    //    for (int i = 0; i /*< snakeBodyTransformList.Count && i*/ < 10; i++)
-    //    {
-    //        Debug.Log("Isnide Misatm,atcjh checking " );
-    //        if (snakeBodyTransformList[i].position == OtherSnake.GetComponent<Snake>().snakeBodyTransformList[i].position)
-    //        {
-    //            Debug.Log("Position mismatch at index " + i);
-    //            state = SnakeState.Loose;
-    //        }
-    //    }
-    //}
+    public void MatchPositionsWith()
+    {
+        Debug.Log("Above Misatm,atcjh checking " + this.gameObject.name);
+        if (this.transform.position == OtherSnake.transform.position)
+        {
+            Debug.Log("this Pos == " + transform.position + "Other Snake Pos==" + OtherSnake.transform.position+ "Name==" + this.gameObject.name);
+            state = SnakeState.Loose;
+            Debug.Log("State==" + state + this.gameObject.name);
+        }
+  int  count = Mathf.Min(snakeBodyTransformList.Count > OtherSnake.GetComponent<Snake>().snakeBodyTransformList.Count ? snakeBodyTransformList.Count : OtherSnake.GetComponent<Snake>().snakeBodyTransformList.Count);
+        for (int i = 0; i <count ; i++)
+        {
+            Debug.Log("Count >>" + count);
+            Debug.Log("Isnide Misatm,atcjh checking " + this.gameObject.name);
+            if (snakeBodyTransformList[i].position == OtherSnake.GetComponent<Snake>().snakeBodyTransformList[i].position)
+            {
+                Debug.Log("Position mismatch at index " + i + this.gameObject.name);
+                state = SnakeState.Loose;
+            }
+        }
+
+      
+    }
 
 
 

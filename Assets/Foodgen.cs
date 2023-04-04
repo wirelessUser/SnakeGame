@@ -108,7 +108,7 @@ public class Foodgen /*: MonoBehaviour*/
 
         if (snakeGridPos ==FoodPos)
         {
-            Debug.Log("true Get called called for >>" + this.foodGameObj1.name + ">>" + snakeref.gameObject.name);
+          //  Debug.Log("true Get called called for >>" + this.foodGameObj1.name + ">>" + snakeref.gameObject.name);
                 Object.Destroy(foodGameObj1);
                 FoodSpawn();
                 return true;
@@ -116,7 +116,7 @@ public class Foodgen /*: MonoBehaviour*/
         }
         else
         {
-            Debug.Log("False  Get called called for >>" + this.foodGameObj1.name + ">>" + snakeref.gameObject.name);
+          //  Debug.Log("False  Get called called for >>" + this.foodGameObj1.name + ">>" + snakeref.gameObject.name);
             return false;
         }
     }
