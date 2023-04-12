@@ -118,14 +118,14 @@ public class Snake : MonoBehaviour
         if (Boosted)
         {
             boostedSpeed = 4;
-            Debug.Log(" Hey" + this.gameObject.name + " " + "You are boosted" + "Now your speed is " + boostedSpeed);
+          //  Debug.Log(" Hey" + this.gameObject.name + " " + "You are boosted" + "Now your speed is " + boostedSpeed);
             movingBoostedTimer += Time.deltaTime;
             if (movingBoostedTimer>=55)
             {
                
                 Boosted = false;
                 boostedSpeed = 1;
-                Debug.Log(" Hey" + this.gameObject.name + " " + "Cooldown From Power Up" + "Now your speed is " + boostedSpeed);
+             //   Debug.Log(" Hey" + this.gameObject.name + " " + "Cooldown From Power Up" + "Now your speed is " + boostedSpeed);
                 movingBoostedTimer = 0;
             }
         }
@@ -311,7 +311,7 @@ public class Snake : MonoBehaviour
           //  Debug.Log("snakeBodyPartsgridPosition>>" + snakeBodyPartsgridPosition);
             if (gridPosition == snakeBodyPartsgridPosition)
             {
-                Debug.Log("gameOver");
+               //    Debug.Log("gameOver");
                 //state = SnakeState.Dead;
             }
         }
@@ -319,22 +319,35 @@ public class Snake : MonoBehaviour
 
     private void RemovingSnakeBody()
     {
-        Debug.Log("Insdie remoe sanke body fucntion>>");
+       // Debug.Log("Insdie remoe sanke body fucntion>>");
         //int lastIndex = snakeBodyTransformList.Count - 1; // moving that line isndie 
-        if (snakeBodySize != 0 /*|| lastIndex != 0*/)
+        if (snakeBodySize >= 0 /*|| snakeBodySize <= 0*/ )
         {
-            snakeBodySize--;
+            
+                snakeBodySize--;
+            if (snakeBodySize < 0)
+            {
+                snakeBodySize = 0;
+                state = SnakeState.Dead;
+                return;
+            }
             int lastIndex = snakeBodyTransformList.Count - 1;
             Debug.Log("Last idnex removing body>>" + lastIndex);
             Transform lastBodyPart = snakeBodyTransformList[lastIndex];
             snakeBodyTransformList.RemoveAt(lastIndex);
             DestroyImmediate(lastBodyPart.gameObject);
+
+            
         }
-        else
-        {
-            snakeBodySize = 0;
-          //  Debug.Log("Else Situation Size is set to zero>> ");
-        }
+        //else if (snakeBodySize == 0)
+        //{
+           
+            
+        //        state = SnakeState.Dead;
+            
+        //    snakeBodySize = 0;
+        //    //  Debug.Log("Else Situation Size is set to zero>> ");
+        //}
 
     }
 
