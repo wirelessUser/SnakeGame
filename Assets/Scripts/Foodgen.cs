@@ -28,8 +28,8 @@ public class Foodgen : MonoBehaviour
     public FoodName foodname;
     private void Update()
     {
-       
-       
+
+        Debug.Log("Time.time" + Time.time);
     }
 
     private void Start()
@@ -39,8 +39,9 @@ public class Foodgen : MonoBehaviour
     }
     private void Awake()
     {
-        InvokeRepeating("Ativatecalling", 0f, 6);
-   
+        InvokeRepeating("Ativatecalling", 0f,3);
+        InvokeRepeating("Detivatecalling", 0f, 8);
+       // StartCoroutine(ActivateePrefabAfterSeconds());
         FoodSpawn();
       
     }
@@ -120,22 +121,25 @@ public class Foodgen : MonoBehaviour
 
     public void Ativatecalling()
     {
-        Debug.Log("fcunion isndie coruotine called Abob=ve line hit");
-        this.transform.position = GridPosFood();
+       // Debug.Log("fcunion isndie coruotine called Abob=ve line hit");
+       
+        Debug.Log("Above Time At Activation  call >>" + Time.time);
         this.gameObject.SetActive(true);
-        Debug.Log("fcunion isndie coruotine called Below line hit");
+        Debug.Log("Below Time At Activation call >>" + Time.time);
+       // Debug.Log("fcunion isndie coruotine called Below line hit");
 
-        StartCoroutine(DeactivatePrefabAfterSeconds());
+       //StartCoroutine(DeactivatePrefabAfterSeconds());
+
     }
 
     public void Detivatecalling()
     {
-        Debug.Log("Above Deativateion Yield Above Line ");
+       // Debug.Log("Above Deativateion Yield Above Line ");
         this.transform.position = GridPosFood();
-
+        Debug.Log("Above Time At Detivatecalling  call >>" + Time.time);
         gameObject.SetActive(false);
-
-        Debug.Log("Above Deativateion Yield Bewlo line ");
+        Debug.Log("Below Time At Detivatecalling call >>" + Time.time);
+       // Debug.Log("Above Deativateion Yield Bewlo line ");
     }
 
     //public IEnumerator ActivateePrefabAfterSeconds()
@@ -145,17 +149,20 @@ public class Foodgen : MonoBehaviour
     //    yield return new WaitForSeconds(0);
     //    Ativatecalling();
     //    Debug.Log("Below yiled");
+    //    StartCoroutine(DeactivatePrefabAfterSeconds());
 
-    //    InvokeRepeating("DeactivatePrefabAfterSeconds", 0, 10);
-    //    // StartCoroutine(DeactivatePrefabAfterSeconds());
+    //   StartCoroutine(ActivateePrefabAfterSeconds());
 
     //}
 
     public IEnumerator DeactivatePrefabAfterSeconds()
     {
+        Debug.Log("Above Time At deatcivation call >>" + Time.time);
         Debug.Log("Above Deativateion Yield ");
         yield return new WaitForSeconds(8);
 
+        gameObject.SetActive(false);
+        Debug.Log(" Below Time At deatcivation call >>" + Time.time);
         Debug.Log("Below  Deativateion Yield");
 
 
