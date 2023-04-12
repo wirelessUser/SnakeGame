@@ -287,11 +287,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &646347112 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8958278118065358192, guid: 856167b33ab96d84f98d8f22904dd779, type: 3}
-  m_PrefabInstance: {fileID: 905817490}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &646347114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8958278118065358198, guid: 856167b33ab96d84f98d8f22904dd779, type: 3}
@@ -471,7 +466,6 @@ GameObject:
   m_Component:
   - component: {fileID: 740486235}
   - component: {fileID: 740486234}
-  - component: {fileID: 740486233}
   - component: {fileID: 740486236}
   m_Layer: 0
   m_Name: Square
@@ -480,21 +474,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &740486233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740486232}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4195ddf974be8e14bb1409f5b0810c38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yellowPrefab: {fileID: 646347112}
-  white: {fileID: 740486232}
-  speed: 5
 --- !u!212 &740486234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -577,8 +556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0821bf92c5928f46b7315d47cd804ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
-  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &905817490
 PrefabInstance:
   m_ObjectHideFlags: 0

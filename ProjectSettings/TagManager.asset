@@ -46,6 +46,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Path Tiles
+    uniqueID: 1101805203
+    locked: 0
   - name: Player
     uniqueID: 3537999257
+    locked: 0
+  - name: UI
+    uniqueID: 1771790113
     locked: 0
