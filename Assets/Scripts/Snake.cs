@@ -335,7 +335,7 @@ public class Snake : MonoBehaviour
             Debug.Log("Last idnex removing body>>" + lastIndex);
             Transform lastBodyPart = snakeBodyTransformList[lastIndex];
             snakeBodyTransformList.RemoveAt(lastIndex);
-            DestroyImmediate(lastBodyPart.gameObject);
+            Destroy(lastBodyPart.gameObject);
 
             
         }
