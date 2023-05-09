@@ -43,7 +43,6 @@ public class Grid : MonoBehaviour
        
      
        
-       // Debug.Log("calling Awake from grid");
 
         for (int i = 0; i<gridArray.GetLength(0); i++)
         {
@@ -52,9 +51,7 @@ public class Grid : MonoBehaviour
                 
                 GameObject gridPre = Instantiate(gridpre);
                    Vector2 pos = GetWorldPosition(i, j);
-               // Debug.Log("GetWorldPosition(i, j)" + GetWorldPosition(i, j));
                 gridPre.transform.position = new Vector2(0.5f, 0.5f) + pos;
-                //gridpre.transform.SetParent(GameObject.Find("GrisdGen").transform);
             }
         }
     }
@@ -63,7 +60,6 @@ public class Grid : MonoBehaviour
 
     public Vector2 GetWorldPosition(int x , int y)
     {
-       // Debug.Log("Vector3(x, y) * cellSize" + new Vector3(x, y) );
         return new Vector3(x, y);
 
     }

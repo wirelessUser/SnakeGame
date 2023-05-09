@@ -15,9 +15,6 @@ public class MainMenu : MonoBehaviour
         
         PlayButton.onClick.AddListener(() => {SceneManager.LoadScene(scenName); } );
 
-       // GameObject.Find("PlayButton").GetComponent<Button>().onClick.AddListener((string sceneName) => { SceneManager.LoadScene(sceneName) });
-
-        // error unity action does not take one arument
     }
 
 
