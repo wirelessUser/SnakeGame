@@ -34,9 +34,6 @@ public class Gamemanager : MonoBehaviour
         CreateBadFood();
 
 
-        //GoodFoodPrefab = Resources.Load("Good Food 1") as GameObject;
-
-        //BadFoodPrefab = Resources.Load("Bad Food 1") as GameObject;
     }
 
    
@@ -66,41 +63,9 @@ public class Gamemanager : MonoBehaviour
 
        
     }
-    private void Update()
-    {
+   
 
-
-        //Destroy(GoodFoodPrefab, 10);
-        // Destroy(PowerUpPrefab, 10);
-        //Destroy(BadFoodPrefab, 10);
-
-       
-
-        //Invoke("CreatePrefabAfterSeconds", Random.Range(15, 25));
-        //StartCoroutine(DestroPrefabAfterSeconds());
-
-    }
-
-
-
-    //public IEnumerator CreatePrefabAfterSeconds()
-    //{
-    //    yield return new WaitForSeconds(Random.Range(15, 25));
-
-    //    CreatePowerUp();
-    //    CreateGoodFood();
-    //    CreateBadFood();
-    //}
-
-    //public IEnumerator DestroPrefabAfterSeconds()
-    //{
-    //    yield return new WaitForSeconds(20);
-
-    //    GoodFoodPrefab.gameObject.SetActive(false);
-    //    BadFoodPrefab.gameObject.SetActive(false);
-    //    PowerUpPrefab.gameObject.SetActive(false);
-
-    //}
+   
 
 
 

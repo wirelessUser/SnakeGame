@@ -29,7 +29,7 @@ public class Foodgen : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log("Time.time" + Time.time);
+        //Debug.Log("Time.time" + Time.time);
     }
 
     private void Start()
@@ -39,9 +39,8 @@ public class Foodgen : MonoBehaviour
     }
     private void Awake()
     {
-        InvokeRepeating("Ativatecalling", 0f,3);
-        InvokeRepeating("Detivatecalling", 0f, 8);
-       // StartCoroutine(ActivateePrefabAfterSeconds());
+        InvokeRepeating("Ativatecalling", 0f,Random.Range(3,8));
+      
         FoodSpawn();
       
     }
@@ -51,12 +50,7 @@ public class Foodgen : MonoBehaviour
         gridref = _gridref;
     
     }
-    public void RefToOther(Snake _snakeref)
-    {
-
-        // snakeref = _snakeref;
-        //FoodSpawn();// check for null
-    }
+  
     private void  FoodSpawn()
     {
         for (int i = 0; i < snakeref.Length; i++)
@@ -71,7 +65,6 @@ public class Foodgen : MonoBehaviour
   
 
         this.transform.position = FoodPos;
-     //  Debug.Log("transfrom.posiomn>>" + transform.position + "Name==" + this.gameObject.name);
         this.transform.localScale = new Vector3(0.25f, 0.25f);
         this.GetComponent<SpriteRenderer>().sortingLayerName= "Player";
         this.GetComponent<SpriteRenderer>().sortingOrder = 5;
@@ -121,52 +114,34 @@ public class Foodgen : MonoBehaviour
 
     public void Ativatecalling()
     {
-       // Debug.Log("fcunion isndie coruotine called Abob=ve line hit");
        
-        Debug.Log("Above Time At Activation  call >>" + Time.time);
+       
+       
         this.gameObject.SetActive(true);
-        Debug.Log("Below Time At Activation call >>" + Time.time);
-       // Debug.Log("fcunion isndie coruotine called Below line hit");
+       
 
-       //StartCoroutine(DeactivatePrefabAfterSeconds());
 
     }
 
     public void Detivatecalling()
     {
-       // Debug.Log("Above Deativateion Yield Above Line ");
         this.transform.position = GridPosFood();
-        Debug.Log("Above Time At Detivatecalling  call >>" + Time.time);
+    
         gameObject.SetActive(false);
-        Debug.Log("Below Time At Detivatecalling call >>" + Time.time);
-       // Debug.Log("Above Deativateion Yield Bewlo line ");
+      
     }
 
-    //public IEnumerator ActivateePrefabAfterSeconds()
-    //{
-
-    //    Debug.Log("Above yiled");
-    //    yield return new WaitForSeconds(0);
-    //    Ativatecalling();
-    //    Debug.Log("Below yiled");
-    //    StartCoroutine(DeactivatePrefabAfterSeconds());
-
-    //   StartCoroutine(ActivateePrefabAfterSeconds());
-
-    //}
+   
 
     public IEnumerator DeactivatePrefabAfterSeconds()
     {
-        Debug.Log("Above Time At deatcivation call >>" + Time.time);
-        Debug.Log("Above Deativateion Yield ");
+       
         yield return new WaitForSeconds(8);
 
         gameObject.SetActive(false);
-        Debug.Log(" Below Time At deatcivation call >>" + Time.time);
-        Debug.Log("Below  Deativateion Yield");
+     
 
 
-        //StartCoroutine(DeactivatePrefabAfterSeconds());
     }
 
 }

@@ -1214,6 +1214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74a901dbebd89346a350b8c27e923f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridMoveDirection: {x: 0, y: 0}
+  gridPosition: {x: 0, y: 0}
+  gridMoveTimer: 0
+  gridfMoveTimerMax: 1
   foodref1: {fileID: 0}
   foodref2: {fileID: 0}
   PowerUP: {fileID: 0}
@@ -1221,11 +1225,10 @@ MonoBehaviour:
   snakeMovementPositionList: []
   snakeBodyTransformList: []
   state: 0
+  CurrentSnakeId: 0
   snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
-  OtherSnake: {fileID: 0}
   Boosted: 0
   boostedSpeed: 0
-  CurrentSnakeId: 0
   snakeMOve: 0
   movingBoostedTimer: 0
   BoundryLImitLeftDown: {x: 0.5, y: 0.5}
@@ -1929,7 +1932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bdc17588999b648aa3284ba8c7c69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snakref1: {fileID: 7016413064099177450}
+  snakref1: {fileID: 7016413064099177466}
   snakref2: {fileID: 4836023131221494281}
   GoodFoodPrefab: {fileID: 4892068239600310678, guid: c28d66980ab221944a14b907ce93563d, type: 3}
   BadFoodPrefab: {fileID: 4217941026745361078, guid: 6314acaef0ca160498d9f20dcce1d2cb, type: 3}
@@ -3284,11 +3287,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4836023131221494282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e74a901dbebd89346a350b8c27e923f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridMoveDirection: {x: 0, y: 0}
+  gridPosition: {x: 0, y: 0}
+  gridMoveTimer: 0
+  gridfMoveTimerMax: 1
   foodref1: {fileID: 0}
   foodref2: {fileID: 0}
   PowerUP: {fileID: 0}
@@ -3296,11 +3303,10 @@ MonoBehaviour:
   snakeMovementPositionList: []
   snakeBodyTransformList: []
   state: 0
+  CurrentSnakeId: 1
   snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
-  OtherSnake: {fileID: 7016413064099177463}
   Boosted: 0
   boostedSpeed: 1
-  CurrentSnakeId: 1
   snakeMOve: 0
   movingBoostedTimer: 0
   BoundryLImitLeftDown: {x: 0.5, y: 0.5}
@@ -3316,13 +3322,15 @@ GameObject:
   - component: {fileID: 4836023131221494287}
   - component: {fileID: 4836023131221494280}
   - component: {fileID: 4836023131221494281}
+  - component: {fileID: 4836023131221494288}
+  - component: {fileID: 4836023131221494289}
   m_Layer: 0
   m_Name: SnakeHead 2 (1)
   m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4836023131221494287
 Transform:
   m_ObjectHideFlags: 0
@@ -3338,6 +3346,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4836023131221494288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4836023131221494282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6417fbb0d628016448a7ee2bfd3ff6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridMoveDirection: {x: 0, y: 0}
+  gridPosition: {x: 0, y: 0}
+  gridMoveTimer: 0
+  gridfMoveTimerMax: 1
+  foodref1: {fileID: 0}
+  foodref2: {fileID: 0}
+  PowerUP: {fileID: 0}
+  snakeBodySize: 0
+  snakeMovementPositionList: []
+  snakeBodyTransformList: []
+  state: 0
+  CurrentSnakeId: 1
+  snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
+  Boosted: 0
+  boostedSpeed: 1
+  snakeMOve: 0
+  movingBoostedTimer: 0
+  BoundryLImitLeftDown: {x: 0.5, y: 0.5}
+  BoundryUpRight: {x: 9.5, y: 17.5}
+--- !u!114 &4836023131221494289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4836023131221494282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d863b1301eb15174a8540c2334a81a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OtherSnake: {fileID: 7016413064099177463}
+  state: 0
+  CurrentSnakeId: 1
 --- !u!212 &7016413064099177448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3398,41 +3452,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7016413064099177463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.5, y: 9.5, z: 0}
+  m_LocalPosition: {x: 0.05, y: 0.46, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7016413064099177450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7016413064099177463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e74a901dbebd89346a350b8c27e923f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodref1: {fileID: 0}
-  foodref2: {fileID: 0}
-  PowerUP: {fileID: 0}
-  snakeBodySize: 0
-  snakeMovementPositionList: []
-  snakeBodyTransformList: []
-  state: 0
-  snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
-  OtherSnake: {fileID: 4836023131221494282}
-  Boosted: 0
-  boostedSpeed: 1
-  CurrentSnakeId: 0
-  snakeMOve: 0
-  movingBoostedTimer: 0
-  BoundryLImitLeftDown: {x: 0.5, y: 0.5}
-  BoundryUpRight: {x: 9.5, y: 17.5}
 --- !u!1 &7016413064099177463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3443,11 +3469,90 @@ GameObject:
   m_Component:
   - component: {fileID: 7016413064099177449}
   - component: {fileID: 7016413064099177448}
-  - component: {fileID: 7016413064099177450}
+  - component: {fileID: 7016413064099177464}
+  - component: {fileID: 7016413064099177465}
+  - component: {fileID: 7016413064099177466}
   m_Layer: 0
   m_Name: SnakeHead 1
   m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &7016413064099177464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016413064099177463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab38724ec23fd544b1b2d2f411b609c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridMoveDirection: {x: 0, y: 0}
+  gridPosition: {x: 0, y: 0}
+  gridMoveTimer: 0
+  gridfMoveTimerMax: 1
+  foodref1: {fileID: 0}
+  foodref2: {fileID: 0}
+  PowerUP: {fileID: 0}
+  snakeBodySize: 0
+  snakeMovementPositionList: []
+  snakeBodyTransformList: []
+  state: 0
+  CurrentSnakeId: 0
+  snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
+  Boosted: 0
+  boostedSpeed: 1
+  snakeMOve: 0
+  movingBoostedTimer: 0
+  BoundryLImitLeftDown: {x: 0.5, y: 0.5}
+  BoundryUpRight: {x: 9.5, y: 17.5}
+--- !u!114 &7016413064099177465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016413064099177463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d863b1301eb15174a8540c2334a81a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OtherSnake: {fileID: 4836023131221494282}
+  state: 0
+  CurrentSnakeId: 0
+--- !u!114 &7016413064099177466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016413064099177463}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74a901dbebd89346a350b8c27e923f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridMoveDirection: {x: 0, y: 0}
+  gridPosition: {x: 0, y: 0}
+  gridMoveTimer: 0
+  gridfMoveTimerMax: 1
+  foodref1: {fileID: 0}
+  foodref2: {fileID: 0}
+  PowerUP: {fileID: 0}
+  snakeBodySize: 0
+  snakeMovementPositionList: []
+  snakeBodyTransformList: []
+  state: 0
+  CurrentSnakeId: 0
+  snakeBodyObject: {fileID: 7227445172759921616, guid: 249e36b1b386d8449a87428f5fa6a8a3, type: 3}
+  Boosted: 0
+  boostedSpeed: 1
+  snakeMOve: 0
+  movingBoostedTimer: 0
+  BoundryLImitLeftDown: {x: 0.5, y: 0.5}
+  BoundryUpRight: {x: 9.5, y: 17.5}
